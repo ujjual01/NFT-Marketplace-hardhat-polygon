@@ -21,7 +21,6 @@ export default function Home() {
     const tokenContract = new ethers.Contract(nftaddress, NFT.abi, provider)
     const marketContract = new ethers.Contract(nftmarketaddress, Market.abi, provider)
     const data = await marketContract.fetchMarketItems()
-
  
     const items = await Promise.all(data.map(async i =>{
       const tokenUri = await tokenContract.tokenUri(i.tokenId)
@@ -39,7 +38,7 @@ export default function Home() {
       return item
     }))
     setNfts(items)
-    setLoadingState('Loaded')
+    setLoadingState('loaded')
   } 
 
   async function BuyNFT(nft){
